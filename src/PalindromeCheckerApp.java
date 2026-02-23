@@ -35,3 +35,4 @@ public class PalindromeCheckerApp {
             System.out.println("WORD" +word+ "Is not Pallindrome");
         }
 }
+}
