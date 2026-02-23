@@ -7,10 +7,8 @@ public class PalindromeCheckerApp {
         displayWelcomeMessage();
 
         //UC2
-        //eckHarcodedPallindrome();
-
+        checkHardcodedPallindrome();
         //UC3
-        //eckPallindromeuseloop();
 
         System.out.println("Application is ready for Pallindrome Processing");
     }
@@ -26,4 +24,14 @@ public class PalindromeCheckerApp {
         System.out.println("=============================================");
     }
 
+    //UC2 Logic
+    public static void checkHardcodedPallindrome(){
+        String word="madam";
+        String reversed=new StringBuilder(word).reverse().toString();
+
+        if (word.equals(reversed)){
+            System.out.println("WORD" +word+ "Is Pallindrome");
+    } else{
+            System.out.println("WORD" +word+ "Is not Pallindrome");
+        }
 }
