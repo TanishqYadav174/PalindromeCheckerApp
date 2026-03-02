@@ -1,32 +1,39 @@
 public class PalindromeCheckerApp {
 
+    public static boolean isPalindrome(String input) {
 
-    public static boolean isPalindrome(String str, int start, int end) {
+        // Step 1: Normalize the string
+        // Convert to lowercase
+        input = input.toLowerCase();
 
+        // Remove spaces using regex
+        input = input.replaceAll("\\s+", "");
 
-        if (start >= end) {
-            return true;
+        // Step 2: Apply two-pointer logic
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+
+            start++;
+            end--;
         }
 
-
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-
-        return isPalindrome(str, start + 1, end - 1);
+        return true;
     }
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String test = "Madam In Eden Im Adam";
 
-        boolean result = isPalindrome(input, 0, input.length() - 1);
-
-        if (result) {
-            System.out.println(input + " is a Palindrome.");
+        if (isPalindrome(test)) {
+            System.out.println("Palindrome");
         } else {
-            System.out.println(input + " is NOT a Palindrome.");
+            System.out.println("Not Palindrome");
         }
     }
 }
