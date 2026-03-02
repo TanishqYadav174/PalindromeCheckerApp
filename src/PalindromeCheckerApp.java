@@ -1,39 +1,43 @@
+import java.util.Scanner;
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
 
-    public static boolean isPalindrome(String input) {
+    static class PalindromeChecker {
 
-        // Step 1: Normalize the string
-        // Convert to lowercase
-        input = input.toLowerCase();
-
-        // Remove spaces using regex
-        input = input.replaceAll("\\s+", "");
-
-        // Step 2: Apply two-pointer logic
-        int start = 0;
-        int end = input.length() - 1;
-
-        while (start < end) {
-
-            if (input.charAt(start) != input.charAt(end)) {
-                return false;
-            }
-
-            start++;
-            end--;
+        private String normalize(String input) {
+            return input.toLowerCase().replaceAll("[^a-z0-9]", "");
         }
 
-        return true;
+        public boolean checkPalindrome(String input) {
+            String org = normalize(input);
+            Stack<Character> stack = new Stack<>();
+
+            for (int i = 0; i < org.length(); i++) {
+                stack.push(org.charAt(i));
+            }
+
+            String rev = "";
+            while (!stack.isEmpty()) {
+                rev += stack.pop();
+            }
+
+            return org.equals(rev);
+        }
     }
 
     public static void main(String[] args) {
 
-        String test = "Madam In Eden Im Adam";
+        Scanner scan = new Scanner(System.in);
 
-        if (isPalindrome(test)) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
+        System.out.print("Input : ");
+        String input = scan.nextLine();
+
+        PalindromeChecker checker = new PalindromeChecker();
+        boolean result = checker.checkPalindrome(input);
+
+        System.out.println("Is Palindrome : " + result);
+
+        scan.close();
     }
 }
